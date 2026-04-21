@@ -1,0 +1,127 @@
+@charset "UTF-8";
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* BODY */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #f3d88d;
+    height: 100vh;
+    overflow: hidden;
+}
+
+
+#logo{
+	text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 2rem;
+    margin-left:42px;
+    margin-top:35px;
+    position:absolute;
+}
+
+/* BACKGROUND VIDEO */
+#bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+/* CENTER FORM */
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+/* GLASS CARD */
+.modal-content {
+    width: 22rem;
+    padding: 43px 25px 25px 25px;
+    border-radius: 15px;
+    height:25rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* INPUT FIELDS */
+.modal-content input {
+    padding: 10px;
+    border-radius: 8px;
+
+    border: 1px solid rgba(255,255,255,0.3);
+    background: rgba(255,255,255,0.1);
+
+    outline: none;
+    color: white;
+}
+
+/* PLACEHOLDER */
+.modal-content input::placeholder {
+    color: rgba(255,255,255,0.7);
+}
+
+/* LABEL */
+.modal-content label {
+    font-size: 14px;
+}
+
+/* BUTTON */
+.btn {
+    padding: 10px;
+    background-color: #eb5514;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+   
+    border: none;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* BUTTON HOVER EFFECT */
+.btn::before {
+    content: "";
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #1b4332;
+    transition: 0.4s ease;
+    z-index: -1;
+}
+
+.btn:hover::before {
+    top: 0;
+}
+
+/* LINKS */
+a {
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* SMALL TEXT */
+p {
+    text-align: center;
+}

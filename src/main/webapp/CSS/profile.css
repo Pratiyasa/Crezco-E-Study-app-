@@ -1,0 +1,328 @@
+*{
+    padding: 0%;
+    margin: 0%;
+}
+body, html {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+       /* horizontal center */
+}
+
+body {
+    color: #f3d88d;
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: url("../bg-green.avif");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+
+/* MAIN LAYOUT */
+.profile-container {
+    display: flex;
+    padding-top: 100px;
+    height: 100%;
+    width: 100%;
+    gap:30px;
+
+}
+
+/* LEFT SIDE */
+.profile-left {
+    padding-left: 2vw;
+    width: 25%;
+    text-align: left;
+     display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top:50px;
+}
+
+/* IMAGE CONTAINER */
+.profile-img-container {
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+
+/* IMAGE */
+.profile-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* EDIT ICON */
+.edit-icon {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: #eb5514;
+    color: white;
+    padding: 8px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* HOVER EFFECT */
+.edit-icon:hover {
+    background: #1b4332;
+}
+
+.profile-left h2 {
+    margin-top: 15px;
+}
+
+
+
+.email {
+    font-size: 14px;
+    color: #ccc;
+}
+
+/* RIGHT SIDE */
+.profile-right {
+    width: 75%;
+    padding-right: 4vw;
+}
+
+/* ABOUT SECTION GRID STYLE */
+.about-section {
+    display: flex;
+     /* 🔥 allows wrapping */
+    gap: 20px;
+    margin-top: 20px;
+    flex-direction: column;
+}
+
+/* CARDS TAKE HALF WIDTH */
+.about-card {
+    flex: 1 1 calc(50% - 20px);  /* 2 cards per row */
+    min-width: 280px;            /* prevents too small cards */
+    
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    border-radius: 12px;
+}
+/* CARDS */
+/* .about-card {
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    border-radius: 12px;
+} */
+
+/* LIST */
+.about-card ul {
+    padding-left: 20px;
+}
+
+/* PROGRESS BAR */
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background: #334155;
+    border-radius: 10px;
+}
+
+.progress {
+    height: 100%;
+    background: #22c55e;
+    border-radius: 10px;
+}
+
+/* HOVER EFFECT */
+.about-card:hover {
+    transform: translateY(-5px);
+    transition: 0.3s;
+}
+
+
+#navbar{
+    background-color: rgb(224, 224, 224);
+    height: 6vh;
+    width: 96vw;
+    display: flex;
+    justify-content:space-between;
+    border-radius: 7px;
+    left: 1%;
+    top: 1.9%;
+    padding: 10px 10px;
+    position: fixed;
+    z-index: 1000;
+    color:#1b4332
+}
+
+#options{
+    display: flex;
+    justify-content: space-around;
+    width:30vw;
+    margin-left: 50px;
+    padding:7px;
+    
+}
+
+/* #options h4{
+    cursor:pointer;
+    font-weight: 200;
+} */
+
+#options h4{
+    cursor:pointer;
+    font-weight:200;
+    position:relative;
+    padding-bottom:5px;
+    
+}
+#logout h3{
+	font-weight:200;
+    padding-top:10px;
+}
+
+a{
+    text-decoration: none;
+    color: #1b4332;
+}
+
+/* underline line */
+#options h4::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:0%;
+    height:2px;
+    background-color:#eb5514;
+    transition:0.3s ease;
+}
+
+/* hover animation */
+#options h4:hover::after{
+    width:100%;
+}
+
+#logout{
+    display: flex;
+    justify-content: space-around;
+    gap: 15px;
+    margin-right: 20px;
+}
+
+.btn{
+    padding:10px 10px;
+    background-color:#eb5514;
+    border-radius:3px;
+    cursor:pointer;
+    color:white;
+    position:relative;
+    overflow:hidden;
+    z-index:1;
+    border:0;
+    text-decoration: none;
+}
+
+/* hover fill layer */
+.btn::before{
+    content:"";
+    position:absolute;
+    top:-100%;
+    left:0;
+    width:100%;
+    height:100%;
+    background-color:#1b4332;
+    transition:0.4s ease;
+    z-index:-1;
+}
+
+/* hover animation */
+.btn:hover::before{
+    top:0;
+}
+
+#logo {
+    text-decoration: none;
+    color: inherit;
+    font-weight: bold;
+    font-size: 2rem;
+    margin-left:20px;
+     display: inline-block; 
+    transition: transform 0.3s ease;
+}
+
+#logo:hover {
+    transform: scale(1.16); 
+}
+/* EDIT PROFILE SECTION */
+/* EDIT PROFILE SECTION */
+.edit-profile {
+    
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
+    padding: 25px;
+    border-radius: 12px;
+}
+
+/* GRID LAYOUT (🔥 makes it look professional) */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+/* FORM GROUP */
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+/* INPUTS */
+.form-group input,
+.form-group select {
+    padding: 10px;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    background: #1e293b;
+    color: white;
+}
+
+/* FULL WIDTH BUTTON */
+.save-btn {
+    margin-left:360px;
+    margin-top:36px;
+    padding: 3px;
+    background: #eb5514;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    color: white;
+    width: 154px;
+    height: 44px;
+}
+
+.save-btn:hover {
+    background: #1b4332;
+    transition: 0.3s;
+}
+
+.form-group textarea {
+    padding: 10px;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    background: #1e293b;
+    color: white;
+    resize: none;
+}
