@@ -23,7 +23,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    background-color:black;
+    width:auto;
     padding-top: 80px; /* ONLY for navbar space */
 }
 

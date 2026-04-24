@@ -24,6 +24,9 @@ body {
     margin-top:35px;
     position:absolute;
 }
+#logo:hover {
+    transform: scale(1.16); 
+}
 
 /* BACKGROUND VIDEO */
 #bg-video {
@@ -49,7 +52,7 @@ form {
     width: 22rem;
     padding: 43px 25px 25px 25px;
     border-radius: 15px;
-    height:25rem;
+    height:28rem;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -59,7 +62,7 @@ form {
 
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 9px;
 }
 
 /* INPUT FIELDS */
@@ -124,4 +127,13 @@ a {
 /* SMALL TEXT */
 p {
     text-align: center;
+}
+
+.error-msg {
+    color: red;
+    font-size: 14px;   /* increase size */
+    font-weight: bold; /* make bold */
+    display: block;
+    margin-top: 4px;
+    margin-bottom: 8px;
 }

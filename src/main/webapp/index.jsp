@@ -32,7 +32,7 @@ User user = (User) session.getAttribute("user");
         <div id="options">
             <h4><a href="profile.jsp">PROFILE</a></h4>
             <h4>FORUM</h4>
-            <h4>E-EXAM</h4>
+            <h4><a href="exam_page.jsp">E-Exam</a></h4>
         </div>
 
         <div id="logout">

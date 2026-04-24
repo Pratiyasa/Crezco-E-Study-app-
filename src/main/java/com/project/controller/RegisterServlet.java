@@ -1,12 +1,11 @@
 package com.project.controller;
-
+import com.project.dao.UserDAO;
 import java.io.IOException;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 
-import com.project.dao.UserDAO;
 import com.project.model.User;
 
 @WebServlet("/RegisterServlet")
@@ -24,8 +23,13 @@ public class RegisterServlet extends HttpServlet {
         user.setUsername(username);
         user.setEmail(email);
         user.setPassword(password);
-
+        
         UserDAO dao = new UserDAO();
+        if(dao.emailExists(email)){
+            request.setAttribute("error", "Email already registered");
+            request.getRequestDispatcher("Register.jsp").forward(request,response);
+            return;
+        }
         boolean status = dao.registerUser(user);
 
         if (status) {

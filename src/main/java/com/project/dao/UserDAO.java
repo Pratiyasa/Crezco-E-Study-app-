@@ -150,24 +150,26 @@ public class UserDAO {
         return status;
     }
     
-//    public User getUserById(int userId) {
-//
-//        User user = null;
-//
-//        try {
-//            Connection con = DBConnection.getConnection();
-//
-//            String query = "SELECT * FROM users WHERE id = ?";
-//            PreparedStatement ps = con.prepareStatement(query);
-//            ps.setInt(1, userId);
-//
-//            ResultSet rs = ps.executeQuery();
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//        return user;
-//    }
-    
+    public boolean emailExists(String email) {
+        boolean exists = false;
+
+        try {
+            Connection con = DBConnection.getConnection();
+
+            String sql = "SELECT * FROM users WHERE email = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, email);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                exists = true;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return exists;
+    }
 }

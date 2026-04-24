@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <%@ page import="com.project.model.User" %>
-
+<%@ page import="java.util.*,com.project.dao.ExamDAO" %>
 <%
 User user = (User) session.getAttribute("user");
 
@@ -12,6 +12,15 @@ if(user == null){
     return;
 }
 %>
+<%
+ExamDAO dao = new ExamDAO();
+
+Map<String, Object> stats = dao.getUserStats(user.getId());
+int totalTests = (Integer)stats.get("totalTests");
+double avgScore = (Double)stats.get("avgScore");
+
+Map<String, Double> subjectAvg = dao.getSubjectWiseAverage(user.getId());
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +29,7 @@ if(user == null){
     <title>Profile</title>
 
     <!-- Your CSS -->
-    <link rel="stylesheet" href="CSS/profile.css?=v3">
+    <link rel="stylesheet" href="CSS/profile.css?=v2">
 </head>
 
 <body>
@@ -32,7 +41,7 @@ if(user == null){
         <div id="options">
             <h4><a href="profile.jsp">PROFILE</a></h4>
             <h4>FORUM</h4>
-            <h4>E-EXAM</h4>
+            <h4><a href="exam_page.jsp">E-EXAM</a></h4>
         </div>
 
         <div id="logout">
@@ -47,7 +56,7 @@ if(user == null){
     <div class="profile-left">
 
      <!-- PROFILE IMAGE -->
-<form action="<%= request.getContextPath() %>/UploadProfilePicServlet"
+        <form action="<%= request.getContextPath() %>/UploadProfilePicServlet"
       method="post"
       enctype="multipart/form-data">
 
@@ -70,31 +79,37 @@ if(user == null){
 
     </div>
 
-</form>
+    </form>
 
         <!-- STATIC USER DATA -->
         <h2><%= user.getUsername() %></h2>
         <p class="email"><%= user.getEmail() %></p>
         <!-- CARDS -->
-        <div class="about-section">
-            <div class="about-card">
-                <h3>Tests Appeared</h3>
-                <ul>
-                    <li>Java Basics - 80%</li>
-                    <li>DBMS - 75%</li>
-                    <li>OS - 78%</li>
-                </ul>
-            </div>
-
-            <div class="about-card">
-                <h3>Stats</h3>
-                <p><strong>Total Tests:</strong> 45</p>
-                <p><strong>Average Score:</strong> 78%</p>
-                <p><strong>Current Streak:</strong> 5 days</p>
-            </div>
+			<div class="about-card">
+				    <h3>Stats</h3>
+				
+				    <p><strong>Total Tests:</strong> <%= totalTests %></p>
+				    <p><strong>Overall Avg Score:</strong> <%= String.format("%.2f", avgScore) %></p>
+				
+				    
+				   </div>
+				<div class="about-card">
+				    <h4>Subject-wise Avg</h4>
+				
+				    <%
+				    for(Map.Entry<String, Double> entry : subjectAvg.entrySet()){
+				    %>
+				        <p>
+				            <strong><%= entry.getKey().toUpperCase() %>:</strong>
+				            <%= String.format("%.2f", entry.getValue()) %>
+				        </p>
+				    <%
+				    }
+				    %>
+				</div>
         </div>
 
-    </div>
+    
 
     <!-- RIGHT PANEL -->
     <div class="profile-right">
@@ -102,14 +117,16 @@ if(user == null){
         <!-- EDIT PROFILE -->
         <div class="edit-profile">
 
-            <form action="UpdateProfileServlet" method="post">
+            <form action="UpdateProfileServlet" method="post" onsubmit="return validateProfileForm()">
 
                 <div class="form-grid">
 
-                    <div class="form-group">
-                        <label>Phone Number</label>
-                        <input type="text" name="phone" value="<%= user.getPhone() != null ? user.getPhone() : "" %>">
-                    </div>
+					<div class="form-group">
+					    <label>Phone Number</label>
+					    <input type="text" id="phone" name="phone"
+					           value="<%= user.getPhone() != null ? user.getPhone() : "" %>">
+					    <small id="phoneError" class="error-msg"></small>
+					</div>
 
                     <div class="form-group">
 					    <label>Gender</label>
@@ -182,6 +199,24 @@ document.getElementById("imageUpload").addEventListener("change", function(event
         this.form.submit();
     }
 });
+
+function validateProfileForm() {
+    let phone = document.getElementById("phone");
+    let phoneError = document.getElementById("phoneError");
+
+    phoneError.innerText = "";
+    phone.style.border = "";
+
+    let phonePattern = /^[0-9]{10}$/;
+
+    if (!phonePattern.test(phone.value.trim())) {
+        phoneError.innerText = "Phone number must be exactly 10 digits.";
+        phone.style.border = "2px solid red";
+        return false;
+    }
+
+    return true;
+}
 </script>
 
 </body>
